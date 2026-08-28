@@ -1,0 +1,19 @@
+{
+  "name": "smtp-tester",
+  "version": "1.0.0",
+  "description": "SMTP Tester with detailed diagnostics",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "cf-typegen": "wrangler types"
+  },
+  "devDependencies": {
+    "wrangler": "^4.40.0",
+    "typescript": "^5.7.3",
+    "@cloudflare/workers-types": "^4.20250821.0"
+  },
+  "overrides": {
+    "@cloudflare/workers-types": "^4.20250821.0"
+  }
+}
