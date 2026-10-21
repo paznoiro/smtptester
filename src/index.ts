@@ -11,25 +11,29 @@ const HTML = `<!DOCTYPE html>
 <meta name="author" content="SMTP Tester">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#0f172a">
-<link rel="canonical" href="https://smtp-tester.workers.dev/">
+<link rel="canonical" href="https://smtptester.authkeystone.com/">
 <meta property="og:title" content="SMTP Tester — Free SMTP Diagnostics &amp; Email Delivery Test">
 <meta property="og:description" content="Diagnose any SMTP server in seconds — DNS, TLS, AUTH, MAIL FROM/RCPT TO, DATA with detailed failure explanations. Supports PLAIN, LOGIN, XOAUTH2 with OAuth2 token fetch.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://smtp-tester.workers.dev/">
-<meta property="og:image" content="https://smtp-tester.workers.dev/og.png">
+<meta property="og:url" content="https://smtptester.authkeystone.com/">
+<meta property="og:image" content="https://smtptester.authkeystone.com/og.png">
 <meta property="og:site_name" content="SMTP Tester">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="SMTP Tester — Free SMTP Diagnostics Tool">
 <meta name="twitter:description" content="Step-by-step SMTP diagnostics with OAuth2 support — test Gmail, Outlook, SendGrid, SES instantly.">
-<meta name="twitter:image" content="https://smtp-tester.workers.dev/og.png">
+<meta name="twitter:image" content="https://smtptester.authkeystone.com/og.png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📧</text></svg>">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"SMTP Tester","url":"https://smtp-tester.workers.dev/","description":"Free SMTP diagnostics tool — DNS, TCP, TLS, AUTH PLAIN/LOGIN/XOAUTH2, OAuth2 auto-fetch, raw transcript. Test Gmail, Outlook, SendGrid, SES, Mailgun and any SMTP server.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["DNS & TCP connect","STARTTLS/SSL","AUTH PLAIN","AUTH LOGIN","XOAUTH2 OAuth2","OAuth2 client_credentials auto-fetch","MAIL FROM","RCPT TO","DATA delivery","Raw transcript"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"SMTP Tester","url":"https://smtptester.authkeystone.com/","description":"Free SMTP diagnostics tool — DNS, TCP, TLS, AUTH PLAIN/LOGIN/XOAUTH2, OAuth2 auto-fetch, raw transcript. Test Gmail, Outlook, SendGrid, SES, Mailgun and any SMTP server.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["DNS & TCP connect","STARTTLS/SSL","AUTH PLAIN","AUTH LOGIN","XOAUTH2 OAuth2","OAuth2 client_credentials auto-fetch","MAIL FROM","RCPT TO","DATA delivery","Raw transcript"]}</script>
 <style>
 :root { --bg:#0f172a; --card:#1e293b; --muted:#94a3b8; --border:#334155; --accent:#38bdf8; --accent2:#818cf8; --pass:#22c55e; --fail:#ef4444; --warn:#f59e0b; --skip:#64748b; }
 * { box-sizing:border-box; }
 body { margin:0; font-family: ui-sans-system, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color:#e2e8f0; min-height:100vh; }
 a { color: var(--accent); }
 header { padding:24px 20px 12px; max-width:1280px; margin:0 auto; }
+.header-top { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.github-link { color:var(--muted); display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; border:1px solid var(--border); background:#0f172a; flex-shrink:0; transition: color 0.15s, border-color 0.15s; }
+.github-link:hover { color:var(--accent); border-color:var(--accent); }
+.github-link svg { width:20px; height:20px; display:block; }
 header h1 { margin:0; font-size:28px; letter-spacing:-0.02em; display:flex; align-items:center; gap:10px; }
 header h1 span.logo { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 header p { margin:8px 0 0; color:var(--muted); font-size:14px; }
@@ -103,7 +107,12 @@ details summary { cursor:pointer; font-weight:600; font-size:13px; }
 </head>
 <body>
 <header>
-  <h1>📧 <span class="logo">SMTP Tester</span></h1>
+  <div class="header-top">
+    <h1>📧 <span class="logo">SMTP Tester</span></h1>
+    <a class="github-link" href="https://github.com/paznoiro/smtptester" target="_blank" rel="noopener noreferrer" title="View source on GitHub" aria-label="View source on GitHub">
+      <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+  </div>
   <p>Diagnose SMTP servers with step-by-step checklist — DNS, TCP, TLS, AUTH, MAIL/FROM — plus raw transcript and failure explanations. Supports <code class="inline">PLAIN</code>, <code class="inline">LOGIN</code> and <code class="inline">XOAUTH2</code> with automatic OAuth2 token fetch.</p>
 </header>
 

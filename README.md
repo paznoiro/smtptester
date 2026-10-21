@@ -2,6 +2,8 @@
 
 UI to test any SMTP server with **step-by-step diagnostics** and **clear failure explanations**. Supports `PLAIN`, `LOGIN`, `XOAUTH2` (OAuth 2.0) with automatic token fetch, and shows a checklist of what passed / failed plus a full raw transcript.
 
+**Live app:** [https://smtptester.authkeystone.com/](https://smtptester.authkeystone.com/)
+
 ## Features
 - **Checklist**: OAuth2 token fetch → DNS/TCP connect → Greeting (220) → EHLO → STARTTLS/TLS → AUTH → MAIL FROM → RCPT TO → DATA → QUIT — each with pass/fail/skip, duration, error code and human explanation
 - **Detailed errors**: DNS failed, connection refused/timeout, TLS handshake failed, cert invalid, STARTTLS not supported, auth failed (535), OAuth fetch failed, XOAUTH2 token expired, relay denied (550), etc. with remediation
@@ -24,7 +26,7 @@ Deploy:
 
 ```bash
 npm run deploy
-# → https://smtp-tester.<your-subdomain>.workers.dev
+# → production: https://smtptester.authkeystone.com/
 ```
 
 ## XOAUTH2 — Outlook/Office365 example
