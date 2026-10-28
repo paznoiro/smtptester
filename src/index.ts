@@ -332,8 +332,8 @@ Timestamp: {{now}}</textarea>
 <script>
 const presets = {
   custom: { host:"", port:587, encryption:"auto", authType:"plain", desc:"Custom server — fill manually." },
-  gmail: { host:"smtp.gmail.com", port:587, encryption:"starttls", authType:"xoauth2", desc:"Gmail: 587 STARTTLS (preferred) or 465 SSL. PLAIN needs App Password; XOAUTH2 uses Google OAuth." },
-  outlook: { host:"smtp.office365.com", port:587, encryption:"starttls", authType:"xoauth2", desc:"Outlook/Office365: 587 STARTTLS. AUTH XOAUTH2 with client_credentials (Token Endpoint + Client ID/Secret + scope https://outlook.office365.com/.default)." },
+  gmail: { host:"smtp.gmail.com", port:587, encryption:"starttls", authType:"xoauth2", oauth:{ tokenEndpoint:"https://oauth2.googleapis.com/token", scope:"https://mail.google.com/" }, desc:"Gmail: 587 STARTTLS (preferred) or 465 SSL. XOAUTH2 selected. Note: Google does not support client_credentials for SMTP — paste an access token (user consent / refresh-token flow). PLAIN needs an App Password." },
+  outlook: { host:"smtp.office365.com", port:587, encryption:"starttls", authType:"xoauth2", oauth:{ tokenEndpoint:"https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token", scope:"https://outlook.office365.com/.default" }, desc:"Outlook/Office365: 587 STARTTLS. AUTH XOAUTH2 with client_credentials (Token Endpoint + Client ID/Secret + scope https://outlook.office365.com/.default)." },
   yahoo: { host:"smtp.mail.yahoo.com", port:587, encryption:"starttls", authType:"plain", desc:"Yahoo: 587 STARTTLS or 465 SSL. Generate App Password at account security." },
   sendgrid: { host:"smtp.sendgrid.net", port:587, encryption:"starttls", authType:"plain", desc:"SendGrid: 587 STARTTLS, username=apikey, password=SG.* API key. Often also 2525." },
   ses: { host:"email-smtp.us-east-1.amazonaws.com", port:587, encryption:"starttls", authType:"plain", desc:"Amazon SES: host varies by region (us-east-1, eu-west-1, etc.). 587 STARTTLS or 2587 TLS wrapper / 465 SSL." },
@@ -361,10 +361,10 @@ function applyPreset(key){
       if(p.oauth.scope) el("oauthScope").value = p.oauth.scope;
       if(p.oauth.clientId) el("oauthClientId").value = p.oauth.clientId;
       if(p.oauth.user){ el("oauthUser").value = p.oauth.user; el("from").value = p.oauth.user; }
-    } else if(key==="gmail"){
-      // clear user for gmail preset
-      el("oauthUser").value = "";
+    } else {
+      ["oauthTokenEndpoint","oauthScope","oauthClientId","oauthClientSecret","oauthToken"].forEach(id=> el(id).value = "");
     }
+    if(key==="gmail") el("oauthUser").value = "";
   }
   updateAuthUI();
 }
